@@ -11,14 +11,18 @@ export const AboutTitleSubtitle: React.FC<AboutTitleSubtitleProps> = ({
   subtitle,
   backgroundImage,
 }) => {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   return (
     <section className="relative w-full flex items-start justify-start py-[150px]">
       {/* Фоновое изображение с фиксированным позиционированием */}
       <div
         className="absolute inset-0 w-full h-full -z-10 bg-cover bg-center bg-custom"
         style={{
-          backgroundImage: `url(${backgroundImage})`,
+          backgroundImage: `url(${basePath}${backgroundImage})`,
         }}
+        // style={{
+        //   backgroundImage: `url(${backgroundImage})`,
+        // }}
       ></div>
 
       {/* Затемнение фона */}

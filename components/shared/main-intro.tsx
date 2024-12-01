@@ -10,7 +10,10 @@ export const MainIntro: React.FC = () => {
       {/* Фоновое изображение с фиксированием */}
       <div
         className="fixed top-0 left-0 w-screen h-screen -z-10 bg-cover bg-center"
-        style={{ backgroundImage: "url('/assets/bg-main.jpg')" }}
+        style={{
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/assets/first-block-about.jpg)`,
+        }}
+        // style={{ backgroundImage: "url('/assets/bg-main.jpg')" }}
       ></div>
 
       {/* Затемнение фона */}

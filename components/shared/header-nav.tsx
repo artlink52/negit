@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { ChevronDown, ArrowRightIcon } from "lucide-react"; // Импорт стрелок из lucide-react
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const ClientSideNavigation: React.FC = () => {
   const pathname = usePathname(); // Получаем текущий путь
@@ -33,22 +34,22 @@ const ClientSideNavigation: React.FC = () => {
 
   return (
     <nav className="hidden lg:flex space-x-6 gap-nav relative z-19">
-      <a
+      <Link
         href="/"
         className={`text-lg font-medium text-[#0F172A] ${
           isActive("/") ? "border-b-2 border-[#F97316]" : "text-[#0F172A]"
         } hover:text-gray-900`}
       >
         Главная
-      </a>
-      <a
+      </Link>
+      <Link
         href="/about"
         className={`text-lg font-medium text-[#0F172A] ${
           isActive("/about") ? "border-b-2 border-[#F97316]" : "text-[#0F172A]"
         } hover:text-gray-900`}
       >
         О нас
-      </a>
+      </Link>
       {/* Услуги как кнопка без ссылки */}
       <div
         className={`text-lg font-medium ${
@@ -73,41 +74,41 @@ const ClientSideNavigation: React.FC = () => {
               <li className="flex items-center justify-between py-2 group">
                 {" "}
                 {/* Добавлен отступ через py-2 */}
-                <a
+                <Link
                   href="/software-development"
                   className={`text-gray-700 group-hover:text-gray-800 transition-colors flex-1 ${isActive("/software-development") ? "border-l-4 border-[#F97316] pl-2" : ""}`} // flex-1 чтобы текст занимал оставшееся пространство
                 >
                   Разработка ПО
-                </a>
+                </Link>
                 <ArrowRightIcon
                   className="text-gray-700 group-hover:text-[#F97316] transition-colors w-5 h-5 flex-shrink-0" // Фиксированный размер иконки и flex-shrink-0
                 />
               </li>
               <li className="flex items-center justify-between py-2 group">
-                <a
+                <Link
                   href="/production-digitalization"
                   className={`text-gray-700 group-hover:text-gray-800 transition-colors flex-1 ${isActive("/production-digitalization") ? "border-l-4 border-[#F97316] pl-2" : ""}`}
                 >
                   Цифровизация производства
-                </a>
+                </Link>
                 <ArrowRightIcon className="text-gray-700 group-hover:text-[#F97316] transition-colors w-5 h-5 flex-shrink-0" />
               </li>
               <li className="flex items-center justify-between py-2 group">
-                <a
+                <Link
                   href="/it-systems-support"
                   className={`text-gray-700 group-hover:text-gray-800 transition-colors flex-1 ${isActive("/it-systems-support") ? "border-l-4 border-[#F97316] pl-2" : ""}`}
                 >
                   Поддержка ИТ-систем
-                </a>
+                </Link>
                 <ArrowRightIcon className="text-gray-700 group-hover:text-[#F97316] transition-colors w-5 h-5 flex-shrink-0" />
               </li>
               <li className="flex items-center justify-between py-2 group">
-                <a
+                <Link
                   href="/process-automation"
                   className={`text-gray-700 group-hover:text-gray-800 transition-colors flex-1 ${isActive("/process-automation") ? "border-l-4 border-[#F97316] pl-2" : ""}`}
                 >
                   Автоматизация процессов
-                </a>
+                </Link>
                 <ArrowRightIcon className="text-gray-700 group-hover:text-[#F97316] transition-colors w-5 h-5 flex-shrink-0" />
               </li>
             </ul>

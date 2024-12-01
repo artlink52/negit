@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     output: 'export',
-    basePath: "/negit"
+    basePath: '/negit',
+    assetPrefix: '/negit'
 };
 
 export default nextConfig;

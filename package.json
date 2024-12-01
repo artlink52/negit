@@ -4,7 +4,7 @@
   "homepage": "https://artlink52.github.io/negit",
   "private": true,
   "scripts": {
-    "predeploy": "npm run build",
+    "export": "next export",
     "deploy": "gh-pages -d out",
     "dev": "next dev",
     "build": "next build",

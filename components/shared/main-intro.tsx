@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Container } from "@/components/shared/container";
 import { Button } from "@/components/ui/button";
@@ -30,7 +31,14 @@ export const MainIntro: React.FC = () => {
             <p className="text-[#E0E0E0] p-font mt-[25px] lg:mt-[35px]">
               Инновационные решения для 10 предприятий по всей России
             </p>
-            <Button className="mt-[25px] lg:mt-[35px]" variant="default">
+            <Button
+              onClick={() => {
+                const mainAbout = document.getElementById("mainAbout");
+                mainAbout?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="mt-[25px] lg:mt-[35px]"
+              variant="default"
+            >
               Узнать больше
             </Button>
           </div>

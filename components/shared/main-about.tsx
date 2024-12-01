@@ -4,7 +4,7 @@ import { Container } from "./container";
 
 export const MainAbout: React.FC = () => {
   return (
-    <div className="bg-[#faf9f6] pb-16">
+    <div id="mainAbout" className="bg-[#faf9f6] pb-16">
       <Container>
         <div className="flex flex-col md:flex-row md:justify-between md:space-x-8">
           {/* Левая часть с заголовком */}

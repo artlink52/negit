@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
           <div className="flex-shrink-0">
             <Link href="/">
               <Image
-                src="/image.svg"
+                src="assets/image.svg"
                 alt="Лого"
                 width={450}
                 height={67}

@@ -34,7 +34,7 @@ export default function ContactForm({ onClose }: { onClose: () => void }) {
     setIsSubmitting(true); // Устанавливаем состояние отправки
 
     try {
-      const response = await fetch("/negit/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

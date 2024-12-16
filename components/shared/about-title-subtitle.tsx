@@ -17,12 +17,12 @@ export const AboutTitleSubtitle: React.FC<AboutTitleSubtitleProps> = ({
       {/* Фоновое изображение с фиксированным позиционированием */}
       <div
         className="absolute inset-0 w-full h-full -z-10 bg-cover bg-center bg-custom"
-        style={{
-          backgroundImage: `url(/negit${backgroundImage})`,
-        }}
         // style={{
-        //   backgroundImage: `url(${backgroundImage})`,
+        //   backgroundImage: `url(/negit${backgroundImage})`,
         // }}
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+        }}
       ></div>
 
       {/* Затемнение фона */}

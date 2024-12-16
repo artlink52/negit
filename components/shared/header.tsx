@@ -24,12 +24,13 @@ export const Header: React.FC = () => {
           <div className="flex-shrink-0">
             <Link href="/">
               <Image
-                src="assets/image.svg"
+                src="/negit/assets/image.svg"
                 alt="Лого"
                 width={450}
                 height={67}
                 className="h-auto w-auto max-w-[450px] max-h-[67px] object-contain"
                 id="logo"
+                priority
               />
             </Link>
           </div>

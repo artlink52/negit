@@ -1,7 +1,9 @@
 import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useForm } from "react-hook-form";
-import { X } from "lucide-react"; // Иконка закрытия
+import { X, Loader2 } from "lucide-react"; // Иконки
+import { Button } from "@/components/ui/button"; // Кнопка из shadcn
+import { toast } from "react-hot-toast"; // Импортируем toast
 
 interface FormData {
   name: string;
@@ -16,20 +18,23 @@ export default function ContactForm({ onClose }: { onClose: () => void }) {
     formState: { errors },
   } = useForm<FormData>();
   const [captchaToken, setCaptchaToken] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Функция для получения токена reCAPTCHA
-  const onChangeCaptcha = (value: string | null) => {
-    setCaptchaToken(value || "");
+  // Обработка токена капчи
+  const handleCaptchaChange = (token: string | null) => {
+    setCaptchaToken(token || "");
   };
 
   const onSubmit = async (data: FormData) => {
     if (!captchaToken) {
-      alert("Пожалуйста, подтвердите, что вы не робот.");
+      toast.error("Пожалуйста, подтвердите, что вы не робот."); // Показываем тостер об ошибке
       return;
     }
 
+    setIsSubmitting(true); // Устанавливаем состояние отправки
+
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/negit/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,14 +43,18 @@ export default function ContactForm({ onClose }: { onClose: () => void }) {
       });
 
       if (response.ok) {
-        alert("Сообщение отправлено!");
-        onClose();
+        toast.success(
+          "Сообщение успешно отправлено! Мы свяжемся с Вами в ближайшее время."
+        ); // Уведомление об успехе
+        setTimeout(onClose, 1000); // Закрываем модальное окно через 1 сек
       } else {
-        alert("Ошибка при отправке сообщения.");
+        toast.error("Ошибка при отправке сообщения.");
       }
     } catch (error) {
       console.error("Ошибка:", error);
-      alert("Произошла ошибка. Попробуйте позже.");
+      toast.error("Произошла ошибка. Попробуйте позже."); // Уведомление об ошибке
+    } finally {
+      setIsSubmitting(false); // Возвращаем кнопку в исходное состояние
     }
   };
 
@@ -54,7 +63,7 @@ export default function ContactForm({ onClose }: { onClose: () => void }) {
       onSubmit={handleSubmit(onSubmit)}
       className="relative bg-white max-w-lg mx-auto p-6 rounded-lg shadow-lg space-y-4"
     >
-      {/* Контейнер для заголовка и кнопки закрытия */}
+      {/* Заголовок и кнопка закрытия */}
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-2xl font-bold">Обратная связь</h2>
         <button
@@ -111,20 +120,29 @@ export default function ContactForm({ onClose }: { onClose: () => void }) {
         )}
       </div>
 
-      {/* Google reCAPTCHA */}
+      {/* reCAPTCHA v2 */}
       <div className="mt-4">
         <ReCAPTCHA
-          sitekey="6LffCI4qAAAAAP3jRcO45WNQAfiI_hznVcukDQBZ"
-          onChange={onChangeCaptcha}
+          sitekey="6LepdJwqAAAAAF_DVpf5clXg1R2J5_QCThIA1IFk"
+          onChange={handleCaptchaChange}
         />
       </div>
 
-      <button
+      {/* Кнопка отправки */}
+      <Button
         type="submit"
-        className="bg-orange-500 hover:bg-orange-600 text-white p-3 rounded-lg w-full transition-colors mt-4"
+        className="w-full mt-4"
+        disabled={isSubmitting} // Блокируем кнопку при отправке
       >
-        Отправить
-      </button>
+        {isSubmitting ? ( // Если отправляется, показываем индикатор
+          <div className="flex items-center justify-center space-x-2">
+            <Loader2 className="animate-spin" size={20} />
+            <span>Отправка...</span>
+          </div>
+        ) : (
+          "Отправить"
+        )}
+      </Button>
     </form>
   );
 }

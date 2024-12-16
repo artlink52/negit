@@ -137,7 +137,7 @@ export const BurgerMenu: React.FC<BurgerMenuProps> = ({ openModal }) => {
                   const footer = document.getElementById("contacts");
                   footer?.scrollIntoView({ behavior: "smooth" }); // Затем прокручиваем к блоку
                 }}
-                className={`text-lg font-medium hover:text-gray-900 cursor-pointer`}
+                className={`text-lg font-medium text-gray-800 hover:text-gray-900 cursor-pointer`}
               >
                 Контакты
               </a>
